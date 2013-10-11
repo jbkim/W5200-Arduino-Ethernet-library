@@ -2,6 +2,15 @@
 W5200 Arduino Ethernet Library
 ******************************************************************
 * Update History.
+
+11/Oct./2013
+-. Change the W5100 code under Sam folder(Arduino Due)
+-. SPI clock set to 48Mhz and add delay routine
+* How to use
+-. Copy 2 fils from AVR to ..libraries/Ethernet/arch/Avr/utility/
+-. Copy 2 fils from SAM to ..libraries/Ethernet/arch/Sam/utility/
+
+
 2/Feb./2013
 -. Update for supporting Arduino Due (32bit) : you can find the changes by checking #ifdef W5200
 -. Changes: Make 2 folder, AVR and SAM.

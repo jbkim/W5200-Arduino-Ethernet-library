@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "w5100.h"
+#include "utility/w5100.h"
 
 // W5100 controller instance
 W5100Class W5100;
@@ -36,11 +36,17 @@ void W5100Class::init(void)
   SPI.begin(SPI_CS);
   
   #ifdef W5200
+
+  // more initila delay is required
+  delay(200);
+
   // should be ok with no divider, W5200 support 80Mhz and SAM3X8E is cadenced to 84Mhz..
-  //have tried with webserver sample and it's ok but require more tests
+  // Set clock to 84Mhz but this setting NOT work: SPI clock shaping is not good.
+  // SPI.setClockDivider(SPI_CS, 1); 
   
-  // Set clock to 42Mhz (W5200 should support up to 80Mhz)
-  //SPI.setClockDivider(SPI_CS, 2);
+  // Set clock to 42Mhz 
+  SPI.setClockDivider(SPI_CS, 2); 
+ 
   #else
   // Set clock to 4Mhz (W5100 should support up to 14Mhz)
   SPI.setClockDivider(SPI_CS, 21);
